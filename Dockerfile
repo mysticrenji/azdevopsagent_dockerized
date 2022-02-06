@@ -44,7 +44,7 @@ RUN curl https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz | tar -xzO 
     chmod +x /usr/local/bin/helm
 
 ARG TARGETARCH=amd64
-ARG AGENT_VERSION=2.194.0
+ARG AGENT_VERSION=2.198.2
 
 WORKDIR /azp
 RUN if [ "$TARGETARCH" = "amd64" ]; then \
