@@ -4,9 +4,11 @@ LABEL org.opencontainers.image.source https://github.com/mysticrenji/azdevopsage
 # To make it easier for build and release pipelines to run apt-get,
 # configure apt to not require confirmation (assume the -y argument by default)
 ENV DEBIAN_FRONTEND=noninteractive
-ENV TERRAFORM_VERSION 1.0.0
-ENV KUBE_VERSION v1.22.0
-ENV HELM_VERSION v3.7.1
+ENV TERRAFORM_VERSION 1.9.5
+ENV KUBE_VERSION v1.30.0
+ENV HELM_VERSION v3.16.0
+ARG TARGETARCH=amd64
+ARG AGENT_VERSION=3.244.1
 RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -42,9 +44,6 @@ RUN curl -L https://storage.googleapis.com/kubernetes-release/release/$KUBE_VERS
 # Install Helm
 RUN curl https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz | tar -xzO linux-amd64/helm > /usr/local/bin/helm && \
     chmod +x /usr/local/bin/helm
-
-ARG TARGETARCH=amd64
-ARG AGENT_VERSION=2.198.2
 
 WORKDIR /azp
 RUN if [ "$TARGETARCH" = "amd64" ]; then \
