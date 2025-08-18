@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:24.04
 LABEL org.opencontainers.image.source https://github.com/mysticrenji/azdevopsagent-dockerized
 
 # To make it easier for build and release pipelines to run apt-get,
